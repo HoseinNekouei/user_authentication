@@ -1,0 +1,5 @@
+import secrets
+
+SECRECT_KEY= secrets.token_hex(16)
+USERNAME= write your username here
+PASSWORD= write your password here

@@ -10,17 +10,19 @@
         <h2 class="text-center mb-4"> Login Puzzle</h2>
         <p class="riddle">{{ riddle }}</p>
 
-        <form action="{{ url_for(login) }}">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-            <div class="mb-3">
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token }}">
+            <div class="mb-4">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username", name="username" placeholder="Enter your username" minlength="10" maxlength="15" required>
+                <input type="text" class="form-control" ="username" name="username" placeholder="Enter your username" minlength="5" maxlength="15" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" class="form-control" aria-describedby="passwordHelpBlock" name="password" minlength="8" maxlength="16"> 
-                
+                <input type="password" id="password" class="form-control" aria-describedby="passwordHelpBlock" name="password" minlength="6" maxlength="10" required> 
+                <div id="passwordHelpBlock" class="form-text mb-4" >
+                    Your password must be 6-10 characters long.
             </div>
+
             {% with messages= get_flashed_messages(with_categories= true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -33,10 +35,7 @@
             {% endwith %}
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Login></button>
-            </div>
-            <div class="text-center mt-3">
-                <a href="{{ url_for('register')}}"> Don't have an acount? Register</a>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
     </div>
